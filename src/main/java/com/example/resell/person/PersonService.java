@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
+
 @Service
 public class PersonService {
 
@@ -18,7 +19,12 @@ public class PersonService {
         this.personRepository = personRepository;
     }
 
-
+    /**
+     * In aceasta metoda am implementat apelul de get care returneaza toate persoanele din baza
+     * de date a proiectului
+     *
+     * @return list cu toate persoanele gasite
+     */
     public List<Person> getPersons() {
 //        return List.of(
 //                new Person(
@@ -34,6 +40,14 @@ public class PersonService {
 
     }
 
+    /**
+     * Metoda addNewPerson este metoda pe care am folosit-o pentru a face api call-ul de post,
+     * care are rolul de a adauga o noua persoana in baza de date cu datele trimise in apelul
+     * de post
+     *
+     * @param person persoana care va fi adaugata
+     * la final va salva persoana in baza de date
+     */
     public void addNewPerson(Person person){
         Optional<Person> personOptional = personRepository.findPersonByEmail(person.getEmail());
         if(personOptional.isPresent()){
@@ -49,6 +63,13 @@ public class PersonService {
         //System.out.println(person);
     }
 
+    /**
+     * Metoda deletePerson este metoda pe care am folosit-o pentru a face api call-ul de delete,
+     * care are rolul de a sterge o persoana din baza de date dupa id-ul trimis spre call
+     *
+     * @param personId id-ul personei care va fi stearsa
+     * la final va sterge persoana din baza de date
+     */
     public void deletePerson(Long personId) {
         boolean personExist = personRepository.existsById(personId);
         if(!personExist){
@@ -57,6 +78,16 @@ public class PersonService {
         }
         personRepository.deleteById(personId);
     }
+
+    /**
+     * Metoda updatePerson este metoda pe care am folosit-o pentru a face api call-ul de put,
+     * care are rolul de a face update la o persoana deja existenta in baza de date.
+     * Cu acest call se poate modifica username-ul, email-ul si password-ul, ale personale identificate
+     * dupa id-ul dat.
+     *
+     * @param personId id-ul personei care va fi modificata
+     * la final se va face update-ul
+     */
 
     @Transactional
     public void updatePerson(long personId,
