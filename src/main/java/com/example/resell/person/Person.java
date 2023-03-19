@@ -1,42 +1,57 @@
-package com.example.resell.user;
+package com.example.resell.person;
 
+import jakarta.persistence.*;
 
-public class User {
+@Entity
+@Table
+public class Person {
+    @Id
+    @SequenceGenerator(
+        name = "person_sequence",
+                sequenceName = "person_sequence",
+                allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "person_sequence"
+
+    )
     private Long id;
     private String name;
     private String username;
     private String email;
     private String password;
-    private AppUserRole appUserRole;
+    @Enumerated(EnumType.STRING)
+    private AppPersonRole appPersonRole;
 
-    public User() {
+    public Person() {
 
     }
 
-    public User(Long id,
-                String name,
-                String username,
-                String email,
-                String password,
-                AppUserRole appUserRole) {
+    public Person(Long id,
+                  String name,
+                  String username,
+                  String email,
+                  String password,
+                  AppPersonRole appPersonRole) {
         this.id = id;
         this.name = name;
         this.username = username;
         this.email = email;
         this.password = password;
-        this.appUserRole = appUserRole;
+        this.appPersonRole = appPersonRole;
     }
 
-    public User(String name,
-                String username,
-                String email,
-                String getUsername,
-                AppUserRole appUserRole) {
+    public Person(String name,
+                  String username,
+                  String email,
+                  String getUsername,
+                  AppPersonRole appPersonRole) {
         this.name = name;
         this.username = username;
         this.email = email;
         this.password = password;
-        this.appUserRole = appUserRole;
+        this.appPersonRole = appPersonRole;
     }
 
     public Long getId() {
@@ -59,8 +74,8 @@ public class User {
         return password;
     }
 
-    public AppUserRole getAppUserRole() {
-        return appUserRole;
+    public AppPersonRole getAppPersonRole() {
+        return appPersonRole;
     }
 
     public void setId(Long id) {
@@ -83,8 +98,8 @@ public class User {
         this.password = password;
     }
 
-    public void setAppUserRole(AppUserRole appUserRole) {
-        this.appUserRole = appUserRole;
+    public void setAppUserRole(AppPersonRole appPersonRole) {
+        this.appPersonRole = appPersonRole;
     }
 
     @Override
@@ -95,7 +110,7 @@ public class User {
                 ", username='" + username + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", appUserRole=" + appUserRole +
+                ", appPersonRole=" + appPersonRole +
                 '}';
     }
 }
