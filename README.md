@@ -65,6 +65,12 @@ Pe parcurs daca vor interveni anumite probleme, sau ma voi gandi la functionalit
 
 
 
+Mai jos atasez si diagrama bazelor de date gandita initial la inceputul proiectului:
+
+![DiagramaBazadeDate](https://user-images.githubusercontent.com/104634702/226208114-7ad87d79-fb5f-4e5c-8924-e3c4aa8af7e3.png)
+
+
+
 
 > Note: `--capt-add=SYS-ADMIN` is required for PDF rendering.
 
