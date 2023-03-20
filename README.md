@@ -67,9 +67,65 @@ Pe parcurs daca vor interveni anumite probleme, sau ma voi gandi la functionalit
 
 Mai jos atasez si diagrama bazelor de date gandita initial la inceputul proiectului:
 
-![DiagramaBazadeDate](https://user-images.githubusercontent.com/104634702/226208114-7ad87d79-fb5f-4e5c-8924-e3c4aa8af7e3.png)
+@startuml
+!define primary_key(x) <b><color:#b8861b><&key></color> x</b>
+!define foreign_key(x) <color:#aaaaaa><&key></color> x
+!define column(x) <color:#efefef><&media-record></color> x
+!define table(x) entity x << (T, white) >>
 
+table( Person ) {
+   primary_key(id): integer
+   column(app_person_role) : varchar(255) 
+   column(email ): varchar(255)
+   column(name ): varchar(255)
+   column(password ): varchar(255)
+   column(username ): varchar(255)
+}
 
+table(Comanda ) 
+{
+   primary_key(id) : bigint
+   foreign_key(id_comanda) : integer <<FK>>
+    foreign_key(id_produs) : integer <<FK>>
+   column(numar_telefon ): varchar(255)
+   column(data_vomenzii ): date
+   column(status_comanda ): varchar(255)
+   column(adresa_livrare ): varchar(255)
+    
+   
+}
+
+table(Produse_Comanda ) {
+    primary_key(id) : bigint
+   foreign_key(id_comanda) : integer <<FK>>
+    foreign_key(id_produse) : integer <<FK>>
+   column(cantitate ): integer
+   column(pret_total ): integer
+  
+}
+
+table(Produs ) {
+    primary_key(id) : bigint
+   column(nume ): varchar(255)
+   column(pret ): integer
+   foreign_key(marimi_disponibile) : integer <<FK>>
+  
+}
+
+table(Produs_Dimensiune ) {
+    primary_key(id) : bigint
+   column(marimea ): integer
+   column(id_produs ):  bigint
+   
+  
+}
+
+Person ||--{ Comanda
+Comanda ||--{ Produse_Comanda
+Produse_Comanda }--|| Produs
+Produs ||--{ Produs_Dimensiune
+
+@enduml
 
 
 > Note: `--capt-add=SYS-ADMIN` is required for PDF rendering.
