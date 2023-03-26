@@ -73,57 +73,89 @@ Mai jos atasez si diagrama bazelor de date gandita initial la inceputul proiectu
 !define column(x) <color:#efefef><&media-record></color> x
 !define table(x) entity x << (T, white) >>
 
-table( Person ) {
+table( User ) {
    primary_key(id): integer
    column(app_person_role) : varchar(255) 
-   column(email ): varchar(255)
-   column(name ): varchar(255)
-   column(password ): varchar(255)
-   column(username ): varchar(255)
+   column(name ) : varchar(255)
+   column(email ) : varchar(255)
+   column(username ) : varchar(255)
+   column(password ) : varchar(255)
+   column(enabled ) : varchar(255)
 }
 
-table(Comanda ) 
-{
-   primary_key(id) : bigint
-   foreign_key(id_comanda) : integer <<FK>>
-    foreign_key(id_produs) : integer <<FK>>
-   column(numar_telefon ): varchar(255)
-   column(data_vomenzii ): date
-   column(status_comanda ): varchar(255)
-   column(adresa_livrare ): varchar(255)
-    
+table( Customer ) {
+   primary_key(id): integer
+   column(first_Name ) : varchar(255)
+   column(last_Name ) : varchar(255)
+   column(mobile_Phone_Number) : varchar(255)
+   foreign_key(shipping_Address_Id) : integer <<FK>>
+   foreign_key(bill_Address_Id) : integer <<FK>>
+   foreign_key(user_Id) : integer <<FK>>
+   foreign_key(shoping_Cart_Id) : integer <<FK>>
    
 }
 
-table(Produse_Comanda ) {
-    primary_key(id) : bigint
-   foreign_key(id_comanda) : integer <<FK>>
-    foreign_key(id_produse) : integer <<FK>>
-   column(cantitate ): integer
-   column(pret_total ): integer
+table(ShoppingCart) {
+   primary_key(id) : integer
+   column(totalCartPrice) : integer
+}
+
+
+table(Product ) {
+   primary_key(id) : integer
+   column(name ) : varchar(255)
+   column(price ) : integer
+   column(description) : varchar(255)
+   column(producer) : varchar(255)
+   column(category) : varchar(255) 
   
 }
 
-table(Produs ) {
-    primary_key(id) : bigint
-   column(nume ): varchar(255)
-   column(pret ): integer
-   foreign_key(marimi_disponibile) : integer <<FK>>
-  
+table(SingleProductCart) {
+   primary_key(id) : integer
+   column(quantity) : integer
+   column(price) : integer
+   foreign_key(shopping_Cart_Id) : integer <<FK>>
+   foreign_key(product_Id) : integer <<FK>>
 }
 
-table(Produs_Dimensiune ) {
-    primary_key(id) : bigint
-   column(marimea ): integer
-   column(id_produs ):  bigint
-   
-  
+
+table(Order ) {
+   primary_key(id) : integer
+   foreign_key(shopping_Cart_Id) : integer <<FK>>
+   foreign_key(customer_Id) : integer <<FK>>
+   foreign_key(shipping_Address_Id) : integer <<FK>>
+   foregin_key(billing_Adress_Id) : integer <<FK>>
 }
 
-Person ||--{ Comanda
-Comanda ||--{ Produse_Comanda
-Produse_Comanda }--|| Produs
-Produs ||--{ Produs_Dimensiune
+
+table(BillingAddress) {
+   primary_key(id) : integer
+   column(address) : varchar(255)
+   column(city ): varchar(255)
+   column(zipcode ): varchar(255)
+   column(country ): varchar(255)
+} 
+
+table(ShippingAddress) {
+   primary_key(id) : integer
+   column(address) : varchar(255)
+   column(city ): varchar(255)
+   column(zipcode ): varchar(255)
+   column(country ): varchar(255)
+} 
+
+
+User ||--{ Customer
+Customer }--{ShoppingCart
+Customer }--||ShippingAddress
+Customer }--||BillingAddress
+Customer ||--{Order
+ShoppingCart }--{SingleProductCart
+ShoppingCart ||--{Order
+ShippingAddress ||--{Order
+BillingAddress ||--{Order
+SingleProductCart ||--{Product
 
 @enduml
 
