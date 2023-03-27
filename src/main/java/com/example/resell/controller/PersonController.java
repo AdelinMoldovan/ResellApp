@@ -1,11 +1,10 @@
 package com.example.resell.controller;
 
-import com.example.resell.person.PersonService;
-import com.example.resell.person.Person;
+import com.example.resell.service.PersonService;
+import com.example.resell.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.rmi.StubNotFoundException;
 import java.util.List;
 
 @RestController
@@ -27,12 +26,12 @@ public class PersonController {
     }
 
     @PostMapping //add new person
-    public void registerNewPerson(@RequestBody Person person){
+    public void registerNewPerson(@RequestBody Person person) {
         personService.addNewPerson(person);
     }
 
     @DeleteMapping(path = "{personId}") //delete
-    public void deletePerson(@PathVariable("personId") Long personId){
+    public void deletePerson(@PathVariable("personId") Long personId) {
         personService.deletePerson(personId);
     }
 
@@ -41,7 +40,7 @@ public class PersonController {
             @PathVariable("personId") long personId,
             @RequestParam(required = false) String username,
             @RequestParam(required = false) String email,
-            @RequestParam(required = false) String password){
+            @RequestParam(required = false) String password) {
         personService.updatePerson(personId, username, email, password);
     }
 

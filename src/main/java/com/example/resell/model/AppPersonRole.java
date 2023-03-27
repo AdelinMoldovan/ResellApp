@@ -1,4 +1,4 @@
-package com.example.resell.person;
+package com.example.resell.model;
 
 public enum AppPersonRole {
     ADMIN,

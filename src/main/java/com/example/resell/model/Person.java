@@ -1,4 +1,4 @@
-package com.example.resell.person;
+package com.example.resell.model;
 
 import jakarta.persistence.*;
 
@@ -7,9 +7,9 @@ import jakarta.persistence.*;
 public class Person {
     @Id
     @SequenceGenerator(
-        name = "person_sequence",
-                sequenceName = "person_sequence",
-                allocationSize = 1
+            name = "person_sequence",
+            sequenceName = "person_sequence",
+            allocationSize = 1
     )
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
@@ -45,7 +45,7 @@ public class Person {
     public Person(String name,
                   String username,
                   String email,
-                  String getUsername,
+                  String password,
                   AppPersonRole appPersonRole) {
         this.name = name;
         this.username = username;

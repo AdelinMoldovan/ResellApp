@@ -1,5 +1,7 @@
-package com.example.resell.person;
+package com.example.resell.service;
 
+import com.example.resell.dataAccessObject.PersonRepository;
+import com.example.resell.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -46,11 +48,11 @@ public class PersonService {
      * de post
      *
      * @param person persoana care va fi adaugata
-     * la final va salva persoana in baza de date
+     *               la final va salva persoana in baza de date
      */
-    public void addNewPerson(Person person){
+    public void addNewPerson(Person person) {
         Optional<Person> personOptional = personRepository.findPersonByEmail(person.getEmail());
-        if(personOptional.isPresent()){
+        if (personOptional.isPresent()) {
             throw new IllegalStateException("This email is taken.");
         }
         personRepository.save(person);
@@ -68,11 +70,11 @@ public class PersonService {
      * care are rolul de a sterge o persoana din baza de date dupa id-ul trimis spre call
      *
      * @param personId id-ul personei care va fi stearsa
-     * la final va sterge persoana din baza de date
+     *                 la final va sterge persoana din baza de date
      */
     public void deletePerson(Long personId) {
         boolean personExist = personRepository.existsById(personId);
-        if(!personExist){
+        if (!personExist) {
             throw new IllegalStateException(
                     "Perosn with id " + personId + " does not exist.");
         }
@@ -86,7 +88,7 @@ public class PersonService {
      * dupa id-ul dat.
      *
      * @param personId id-ul personei care va fi modificata
-     * la final se va face update-ul
+     *                 la final se va face update-ul
      */
 
     @Transactional
@@ -97,7 +99,7 @@ public class PersonService {
         Person person = personRepository.findById(personId)
                 .orElseThrow(() -> new IllegalStateException(
                         "Person with id " + personId + " does not exist"));
-        if(username != null &&
+        if (username != null &&
                 username.length() > 0 &&
                 !Objects.equals(person.getUsername(), username)) {
 //            Optional<Person> personOptionalUsername = personRepository.findPersonByUsername(person.getUsername());
@@ -107,17 +109,17 @@ public class PersonService {
             person.setUsername(username);
         }
 
-        if(email != null &&
+        if (email != null &&
                 email.length() > 0 &&
                 !Objects.equals(person.getEmail(), email)) {
             Optional<Person> personOptional = personRepository.findPersonByEmail(person.getEmail());
-            if(personOptional.isPresent()){
+            if (personOptional.isPresent()) {
                 throw new IllegalStateException("This email is taken.");
             }
             person.setEmail(email);
         }
 
-        if(password != null &&
+        if (password != null &&
                 email.length() > 0 &&
                 !Objects.equals(person.getPassword(), password)) {
             person.setPassword(password);
