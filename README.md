@@ -62,9 +62,97 @@ ulterior, dar pentru inceput acestea ar fi.
 
 Mai jos atasez si diagrama bazelor de date gandita initial la inceputul proiectului:
 
-![DiagramaBazadeDate](https://user-images.githubusercontent.com/104634702/226208114-7ad87d79-fb5f-4e5c-8924-e3c4aa8af7e3.png)
+@startuml
+!define primary_key(x) <b><color:#b8861b><&key></color> x</b>
+!define foreign_key(x) <color:#aaaaaa><&key></color> x
+!define column(x) <color:#efefef><&media-record></color> x
+!define table(x) entity x << (T, white) >>
+
+table( User ) {
+   primary_key(id): integer
+   column(app_person_role) : varchar(255) 
+   column(name ) : varchar(255)
+   column(email ) : varchar(255)
+   column(username ) : varchar(255)
+   column(password ) : varchar(255)
+   column(enabled ) : varchar(255)
+}
+
+table( Customer ) {
+   primary_key(id): integer
+   column(first_Name ) : varchar(255)
+   column(last_Name ) : varchar(255)
+   column(mobile_Phone_Number) : varchar(255)
+   foreign_key(shipping_Address_Id) : integer <<FK>>
+   foreign_key(bill_Address_Id) : integer <<FK>>
+   foreign_key(user_Id) : integer <<FK>>
+   foreign_key(shoping_Cart_Id) : integer <<FK>>
+   
+}
+
+table(ShoppingCart) {
+   primary_key(id) : integer
+   column(totalCartPrice) : integer
+}
 
 
+table(Product ) {
+   primary_key(id) : integer
+   column(name ) : varchar(255)
+   column(price ) : integer
+   column(description) : varchar(255)
+   column(producer) : varchar(255)
+   column(category) : varchar(255) 
+  
+}
+
+table(SingleProductCart) {
+   primary_key(id) : integer
+   column(quantity) : integer
+   column(price) : integer
+   foreign_key(shopping_Cart_Id) : integer <<FK>>
+   foreign_key(product_Id) : integer <<FK>>
+}
+
+
+table(Order ) {
+   primary_key(id) : integer
+   foreign_key(shopping_Cart_Id) : integer <<FK>>
+   foreign_key(customer_Id) : integer <<FK>>
+   foreign_key(shipping_Address_Id) : integer <<FK>>
+   foregin_key(billing_Adress_Id) : integer <<FK>>
+}
+
+
+table(BillingAddress) {
+   primary_key(id) : integer
+   column(address) : varchar(255)
+   column(city ): varchar(255)
+   column(zipcode ): varchar(255)
+   column(country ): varchar(255)
+} 
+
+table(ShippingAddress) {
+   primary_key(id) : integer
+   column(address) : varchar(255)
+   column(city ): varchar(255)
+   column(zipcode ): varchar(255)
+   column(country ): varchar(255)
+} 
+
+
+User ||--{ Customer
+Customer }--{ShoppingCart
+Customer }--||ShippingAddress
+Customer }--||BillingAddress
+Customer ||--{Order
+ShoppingCart }--{SingleProductCart
+ShoppingCart ||--{Order
+ShippingAddress ||--{Order
+BillingAddress ||--{Order
+SingleProductCart ||--{Product
+
+@enduml
 
 
 > Note: `--capt-add=SYS-ADMIN` is required for PDF rendering.
