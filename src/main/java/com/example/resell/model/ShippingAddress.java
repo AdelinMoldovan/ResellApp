@@ -18,6 +18,17 @@ public class ShippingAddress implements Serializable {
     private String zipcode;
     private String country;
 
+    @OneToOne(mappedBy = "shippingAddress")
+    private Customer customer;
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
     public ShippingAddress(String address,
                            String city,
                            String zipcode,

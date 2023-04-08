@@ -14,7 +14,4 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
     @Query("SELECT p FROM Person p WHERE p.email = ?1")
     Optional<Person> findPersonByEmail(String email);
 
-    @Query("SELECT p FROM Person p WHERE p.username = ?1")
-    Optional<Person> findPersonByUsername(String username);
-
 }

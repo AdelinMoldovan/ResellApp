@@ -1,37 +1,65 @@
 package com.example.resell.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-@Table(name="Product")
+@EqualsAndHashCode
+@NoArgsConstructor
+@AllArgsConstructor
 public class Product implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    private double productPrice;
-    private String productName;
-    private String productDescription;
-    private String productProducer;
+    private String name;
+
+    @Column(name = "category")
     private String productCategory;
 
-    public Product(double productPrice,
-                   String productName,
-                   String productDescription,
-                   String productProducer,
-                   String productCategory) {
-        this.productPrice = productPrice;
-        this.productName = productName;
-        this.productDescription = productDescription;
-        this.productProducer = productProducer;
-        this.productCategory = productCategory;
+    @Column(name = "description")
+    private String productDescription;
+
+    @Column(name = "producer")
+    private String productManufacturer;
+
+    @Column(name = "price")
+    private double productPrice;
+
+    @Column(name = "unit")
+    private String unitStock;
+
+//    @JsonIgnore
+//    @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER, mappedBy = "product")
+//    private List<Order> orders = new ArrayList<>();
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", productCategory='" + productCategory + '\'' +
+                ", productDescription='" + productDescription + '\'' +
+                ", productManufacturer='" + productManufacturer + '\'' +
+                ", productPrice=" + productPrice +
+                ", unitStock='" + unitStock + '\'' +
+                '}';
     }
 
-    public Product() {
+    public String getName() {
+        return name;
+    }
 
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getId() {
@@ -42,20 +70,12 @@ public class Product implements Serializable {
         this.id = id;
     }
 
-    public double getProductPrice() {
-        return productPrice;
+    public String getProductCategory() {
+        return productCategory;
     }
 
-    public void setProductPrice(double productPrice) {
-        this.productPrice = productPrice;
-    }
-
-    public String getProductName() {
-        return productName;
-    }
-
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public void setProductCategory(String productCategory) {
+        this.productCategory = productCategory;
     }
 
     public String getProductDescription() {
@@ -66,19 +86,29 @@ public class Product implements Serializable {
         this.productDescription = productDescription;
     }
 
-    public String getProductProducer() {
-        return productProducer;
+    public String getProductManufacturer() {
+        return productManufacturer;
     }
 
-    public void setProductProducer(String productProducer) {
-        this.productProducer = productProducer;
+    public void setProductManufacturer(String productManufacturer) {
+        this.productManufacturer = productManufacturer;
     }
 
-    public String getProductCategory() {
-        return productCategory;
+
+    public double getProductPrice() {
+        return productPrice;
     }
 
-    public void setProductCategory(String productCategory) {
-        this.productCategory = productCategory;
+    public void setProductPrice(double productPrice) {
+        this.productPrice = productPrice;
     }
+
+    public String getUnitStock() {
+        return unitStock;
+    }
+
+    public void setUnitStock(String unitStock) {
+        this.unitStock = unitStock;
+    }
+
 }

@@ -18,6 +18,10 @@ public class BillingAddress implements Serializable {
     private String zipcode;
     private String country;
 
+    @OneToOne(mappedBy = "billingAddress")
+    private Customer customer;
+
+
     public BillingAddress(String address,
                           String city,
                           String zipcode,
@@ -26,6 +30,14 @@ public class BillingAddress implements Serializable {
         this.city = city;
         this.zipcode = zipcode;
         this.country = country;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
     public BillingAddress() {
