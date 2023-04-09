@@ -1,9 +1,12 @@
 package com.example.resell.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "customer")
@@ -11,11 +14,12 @@ public class Customer implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
     private String firstName;
     private String lastName;
     private String customerPhone;
     private String email;
+    private String password;
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "shippingAddressId")
     private ShippingAddress shippingAddress;
@@ -27,8 +31,6 @@ public class Customer implements Serializable {
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "personId")
     private Person person;
-
-
 
     @OneToOne
     @JoinColumn(name = "shopping_cart_id")
@@ -43,6 +45,7 @@ public class Customer implements Serializable {
                 ", lastName='" + lastName + '\'' +
                 ", customerPhone='" + customerPhone + '\'' +
                 ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
                 ", shippingAddress=" + shippingAddress +
                 ", billingAddress=" + billingAddress +
                 ", person=" + person +
@@ -58,11 +61,11 @@ public class Customer implements Serializable {
         this.shoppingCart = shoppingCart;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -88,6 +91,14 @@ public class Customer implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getCustomerPhone() {

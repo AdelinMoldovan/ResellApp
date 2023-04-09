@@ -19,7 +19,7 @@ public class Product implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private long id;
     private String name;
 
     @Column(name = "category")
@@ -37,9 +37,6 @@ public class Product implements Serializable {
     @Column(name = "unit")
     private String unitStock;
 
-//    @JsonIgnore
-//    @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER, mappedBy = "product")
-//    private List<Order> orders = new ArrayList<>();
 
     @Override
     public String toString() {
@@ -62,11 +59,11 @@ public class Product implements Serializable {
         this.name = name;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

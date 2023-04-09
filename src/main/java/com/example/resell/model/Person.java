@@ -19,8 +19,8 @@ public class Person {
     private AppPersonRole appPersonRole;
 
 
-    @OneToOne(mappedBy = "person")
-    private Customer customer;
+//    @OneToOne(mappedBy = "person")
+//    private Customer customer;
 
     public Long getId() {
         return id;
@@ -61,15 +61,7 @@ public class Person {
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", appPersonRole=" + appPersonRole +
-                ", customer=" + customer +
                 '}';
     }
 
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
 }

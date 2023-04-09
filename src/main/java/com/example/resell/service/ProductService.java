@@ -10,10 +10,9 @@ import java.util.List;
 @Component
 public interface ProductService {
 
-    Product findById(int id); //throws ProductNotFoundException;
+    Product findById(long id); //throws ProductNotFoundException;
 
     List<Product> findAllByName(String name); //throws ProductNotFoundException;
-    List<Product> findAllByAdmin(Admin admin);
     List<Product> findAllByCategory(String category); //throws ProductNotFoundException;
     List<Product> findAll();
 

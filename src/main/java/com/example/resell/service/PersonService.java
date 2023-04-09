@@ -12,7 +12,6 @@ import java.util.Objects;
 import java.util.Optional;
 
 
-@Service
 @Component
 public interface PersonService {
 

@@ -26,7 +26,8 @@ public class Order implements Serializable {
     @OneToOne
     private ShoppingCart shoppingCart;
 
-    @OneToOne
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn
     private Customer customer;
 
     @OneToOne
@@ -62,10 +63,10 @@ public class Order implements Serializable {
         return "Order{" +
                 "id=" + id +
                 ", shoppingCart=" + shoppingCart +
-                ", customer=" + customer +
-                ", shippingAddress=" + shippingAddress +
-                ", billingAddress=" + billingAddress +
-                ", product=" + product +
+                ", customer=" + customer.toString() +
+                ", shippingAddress=" + shippingAddress.toString() +
+                ", billingAddress=" + billingAddress.toString() +
+                ", product=" + product.toString() +
                 ", time=" + time +
                 '}';
     }

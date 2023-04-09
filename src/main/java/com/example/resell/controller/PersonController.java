@@ -4,6 +4,8 @@ import com.example.resell.service.PersonService;
 import com.example.resell.model.Person;
 import jakarta.persistence.GeneratedValue;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,31 +17,23 @@ public class PersonController {
     @Autowired
     private PersonService personService;
 
-    @GetMapping
-    public List<Person> getPersons() {
-        return personService.getPersons();
-
+    @GetMapping("/findById")
+    public ResponseEntity findPersonById(@RequestParam long id){
+        return ResponseEntity.status(HttpStatus.OK).body(personService.findById(id));
     }
 
-    @GetMapping("/findById")
-    public ResponseEntity findPersonById
+    @GetMapping("/findByEmail")
+    public ResponseEntity findPersonByEmailAndPassword(@RequestParam String email, @RequestParam String password){
+        return ResponseEntity.status(HttpStatus.OK).body(personService.findByEmailAndPassword(email, password));
+    }
 
-//    @PostMapping //add new person
-//    public void registerNewPerson(@RequestBody Person person) {
-//        personService.addNewPerson(person);
-//    }
-//
-//    @DeleteMapping(path = "{personId}") //delete
-//    public void deletePerson(@PathVariable("personId") Long personId) {
-//        personService.deletePerson(personId);
-//    }
-//
-//    @PutMapping(path = "{personId}") //update
-//    public void updatePerson(
-//            @PathVariable("personId") long personId,
-//            @RequestParam(required = false) String email,
-//            @RequestParam(required = false) String password) {
-//        personService.updatePerson(personId , email, password);
-//    }
+    @GetMapping("/findAllByAppPersonRole")
+    public ResponseEntity findAllPersonsByAppPersonRole(){
+        return ResponseEntity.status(HttpStatus.OK).body(personService.findAll());
+    }
 
+    @GetMapping()
+    public ResponseEntity findAllPersons() {
+        return ResponseEntity.status(HttpStatus.OK).body(personService.findAll());
+    }
 }

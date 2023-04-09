@@ -18,7 +18,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Admin implements Serializable {
     @Id
-    private int ownerId;
+    private long id;
     private String firstName;
     private String lastName;
     private String email;
@@ -32,7 +32,7 @@ public class Admin implements Serializable {
     @Transactional
     public String toString() {
         return "Owner{" +
-                "ownerId=" + ownerId +
+                "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
