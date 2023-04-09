@@ -1,6 +1,5 @@
 package com.example.resell.service;
 
-import com.example.resell.dataAccessObject.PersonRepository;
 import com.example.resell.model.AppPersonRole;
 import com.example.resell.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
