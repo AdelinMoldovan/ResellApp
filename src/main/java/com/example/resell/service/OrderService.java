@@ -6,10 +6,8 @@ import com.example.resell.exception.OrderNotFoundException;
 import com.example.resell.model.Customer;
 import com.example.resell.model.Order;
 import com.example.resell.model.Product;
-import org.aspectj.weaver.ast.Or;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 

@@ -4,10 +4,12 @@ import com.example.resell.exception.InvalidPersonException;
 import com.example.resell.exception.InvalidProductException;
 import com.example.resell.exception.ProductNotFoundException;
 import com.example.resell.model.Product;
+import com.example.resell.observer.CustomerObserver;
 import com.example.resell.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,6 +21,7 @@ public class ProductServiceImpl implements ProductService{
 
     @Autowired
     private AdminService adminService;
+    private List<CustomerObserver> observers = new ArrayList<>();
 
     public ProductServiceImpl(ProductRepository productRepository, AdminService adminService) {
         this.productRepository = productRepository;
@@ -42,7 +45,7 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public List<Product> findAllByCategory(String category) {
-        return productRepository.findAllByCategory(category);
+        return productRepository.findAllByProductCategory(category);
     }
 
     @Override
@@ -51,8 +54,28 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
-    public Product addProduct(Product product) throws InvalidProductException, ProductNotFoundException {
-        return null;
+    public Product addProduct(Product product) {
+        // Add the product to the database
+        productRepository.save(product);
+
+        // Notify observers (customers)
+        notifyObservers(product);
+
+        return product;
+    }
+
+    public void registerObserver(CustomerObserver observer) {
+        observers.add(observer);
+    }
+
+    public void unregisterObserver(CustomerObserver observer) {
+        observers.remove(observer);
+    }
+
+    public void notifyObservers(Product product) {
+        for (CustomerObserver observer : observers) {
+            observer.update(product);
+        }
     }
 
     @Override

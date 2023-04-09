@@ -1,16 +1,12 @@
 package com.example.resell.service;
 
-import com.example.resell.exception.CustomerNotFoundException;
 import com.example.resell.exception.InvalidOrderException;
 import com.example.resell.exception.OrderNotFoundException;
-import com.example.resell.exception.ProductNotFoundException;
 import com.example.resell.model.Customer;
 import com.example.resell.model.Order;
 import com.example.resell.model.Product;
 import com.example.resell.repository.OrderRepository;
-import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;

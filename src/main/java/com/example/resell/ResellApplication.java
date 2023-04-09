@@ -9,12 +9,14 @@ import com.example.resell.service.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
-
-import java.time.LocalTime;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 
 @SpringBootApplication
+@EntityScan("com.example.resell.model")
+@EnableJpaRepositories("com.example.resell.repository")
 public class ResellApplication {
 
     public static void main(String[] args) {

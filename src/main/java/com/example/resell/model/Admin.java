@@ -24,9 +24,6 @@ public class Admin implements Serializable {
     private String email;
     private String password;
     private String phoneNumber;
-    @JsonIgnore
-    @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER, mappedBy = "admin")
-    private List<Product> products = new ArrayList<>();;
 
     @Override
     @Transactional

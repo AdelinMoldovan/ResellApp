@@ -2,6 +2,7 @@ package com.example.resell.service;
 
 import com.example.resell.model.Admin;
 import com.example.resell.model.Product;
+import com.example.resell.observer.CustomerObserver;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -21,5 +22,7 @@ public interface ProductService {
 
     void deleteById(long id); //throws ProductNotFoundException;
 
-
+    void registerObserver(CustomerObserver observer);
+    void unregisterObserver(CustomerObserver observer);
+    void notifyObservers(Product product);
 }

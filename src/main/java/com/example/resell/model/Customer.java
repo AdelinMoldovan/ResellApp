@@ -1,5 +1,6 @@
 package com.example.resell.model;
 
+import com.example.resell.observer.CustomerObserver;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.springframework.transaction.annotation.Transactional;
@@ -7,14 +8,17 @@ import org.springframework.transaction.annotation.Transactional;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
 @Entity
 @Table(name = "customer")
-public class Customer implements Serializable {
+public class Customer implements Serializable, CustomerObserver {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     private String firstName;
     private String lastName;
     private String customerPhone;
@@ -51,6 +55,11 @@ public class Customer implements Serializable {
                 ", person=" + person +
                 ", shoppingCart=" + shoppingCart +
                 '}';
+    }
+
+    @Override
+    public void update(Product product) {
+        System.out.println("New product added: " + product.getName() + ". Customer: " + getEmail() + " has been notified.");
     }
 
     public ShoppingCart getShoppingCart() {
@@ -132,4 +141,5 @@ public class Customer implements Serializable {
     public void setPerson(Person person) {
         this.person = person;
     }
+
 }
