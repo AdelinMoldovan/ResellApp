@@ -36,7 +36,7 @@ public class AdminServiceImpl implements AdminService{
     }
 
     @Override
-    public Admin findById(int id) throws AdminNotFoundException{
+    public Admin findById(long id) throws AdminNotFoundException{
         Optional<Admin> admin = adminRepository.findById(id);
         if (!admin.isPresent()) {
             throw new AdminNotFoundException("Admin with id " + id + " not found");

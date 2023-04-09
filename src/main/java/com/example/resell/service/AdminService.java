@@ -9,7 +9,7 @@ import java.util.List;
 @Component
 public interface AdminService {
 
-    Admin findById(int id); // throws AdminNotFoundException;
+    Admin findById(long id); // throws AdminNotFoundException;
     Admin findByEmail(String email); //throws AdminNotFoundException;
     Admin findByFirstNameAndLastName(String firstName, String lastName); // throws AdminNotFoundException;
     Admin findByEmailAndPassword(String email, String password); //throws AdminNotFoundException;

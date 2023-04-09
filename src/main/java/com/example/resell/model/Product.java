@@ -29,7 +29,7 @@ public class Product implements Serializable {
     private String productDescription;
 
     @Column(name = "producer")
-    private String productManufacturer;
+    private String productProducer;
 
     @Column(name = "price")
     private double productPrice;
@@ -45,7 +45,7 @@ public class Product implements Serializable {
                 ", name='" + name + '\'' +
                 ", productCategory='" + productCategory + '\'' +
                 ", productDescription='" + productDescription + '\'' +
-                ", productManufacturer='" + productManufacturer + '\'' +
+                ", productProducer='" + productProducer + '\'' +
                 ", productPrice=" + productPrice +
                 ", unitStock='" + unitStock + '\'' +
                 '}';
@@ -83,12 +83,12 @@ public class Product implements Serializable {
         this.productDescription = productDescription;
     }
 
-    public String getProductManufacturer() {
-        return productManufacturer;
+    public String getProductProducer() {
+        return getProductProducer();
     }
 
-    public void setProductManufacturer(String productManufacturer) {
-        this.productManufacturer = productManufacturer;
+    public void setProductManufacturer(String productProducer) {
+        this.productProducer = productProducer;
     }
 
 
