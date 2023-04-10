@@ -18,7 +18,7 @@ Astfel prin proiectul meu vreau sa rezolv aceasta problem. In cadrul acestuia vr
 ## ✨ Implementare si Functionalitati
 
 #
-In cadrul proiectului, pentru partea de backend voi folosi java iar ca si mediu de dezvolate intellij. Pentru lucrul cu baze de date voi folosi postgres. Iar pentru salvarea proiectul si pentru siguranta ca nu o sa se piarda progresul am incarcat proiectul pe github si pe parcursul semestrului voi adauga functionalitati noi si implementari pentru imbunatatirea proiectului.
+In acest proiect, pentru partea de backend voi folosi java iar ca si mediu de dezvolate intellij. Pentru lucrul cu baze de date voi folosi postgres. Iar pentru salvarea proiectul si pentru siguranta ca nu o sa se piarda progresul am incarcat proiectul pe github si pe parcursul semestrului voi adauga functionalitati noi si implementari pentru imbunatatirea proiectului.
 Pentru partea de frontend nu m-am gandit in totalitate, dar cel mai probabil o sa folosesc
 react, desi inca nu sunt sigur.
 
