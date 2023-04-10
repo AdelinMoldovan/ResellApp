@@ -35,6 +35,7 @@ Pe parcurs daca vor interveni anumite probleme, sau ma voi gandi la functionalit
 Continuad mai departe implementarea proiectului am actualizat clasele aferente si le am grupat pe toate in pachete specifice pentru o mai buna intelegere a codului si pentru a putea fi implementat mult mai usor. Astfel proiectul are acuma urmatoarele pachete cu clasele aferente: controller, exception, model, repository, service si validator, care dupa cum le spune numele fiecare cu rolul si functionalitatea specifica. 
 
 Pentru partea de observar am creat un package observer cu clasa "CustomerObser" unde este implementat Observable Design patter. Asfel: 
+
 Interfața Observable: Interfața Observable este implementată de clasa care dorește să-și notifice observatorii despre schimbări (în acest caz, ProductServiceImpl). Definește metode pentru a înregistra, dezabona și notifica observatorii.
 
 Interfață Observer: Interfața Observer este implementată de clasa care dorește să fie notificată despre schimbări (în acest caz, Clientul). Definește metoda de actualizare, care va fi apelată de către Observable atunci când are loc o schimbare (se adaugă un produs nou).
