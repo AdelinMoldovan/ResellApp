@@ -48,84 +48,85 @@ De asemenea dupa cum se vede si in structura proiectul am modificat si baza de d
 
 Pentru finalul proiectul mai este nevoie de rezolvat o eroare si de finalizat implemetarea pentru a se putea realiza partea de order.
 
-### Diagrama bazei de date: https://www.planttext.com/
-@startuml
-!define primary_key(x) <b><color:#b8861b><&key></color> x</b>
-!define foreign_key(x) <color:#aaaaaa><&key></color> x
-!define column(x) <color:#efefef><&media-record></color> x
-!define table(x) entity x << (T, white) >>
+### Pentru diagrame: https://www.planttext.com/
+### Diagrama bazei de date:
+    @startuml
+    !define primary_key(x) <b><color:#b8861b><&key></color> x</b>
+    !define foreign_key(x) <color:#aaaaaa><&key></color> x
+    !define column(x) <color:#efefef><&media-record></color> x
+    !define table(x) entity x << (T, white) >>
+    
+    table( Admin ) {
+       primary_key(id): integer
+       column(username) : varchar(255) 
+       column(password ) : varchar(255)
+    }
+    
+    table( Customer ) {
+       primary_key(id): integer
+       column(first_Name ) : varchar(255)
+       column(last_Name ) : varchar(255)
+       column(mobile_Phone_Number) : varchar(255)
+       foreign_key(shipping_Address_Id) : integer <<FK>>
+       foreign_key(bill_Address_Id) : integer <<FK>>
+       foreign_key(user_Id) : integer <<FK>>
+       foreign_key(shoping_Cart_Id) : integer <<FK>>
+       
+    }
 
-table( Admin ) {
-   primary_key(id): integer
-   column(username) : varchar(255) 
-   column(password ) : varchar(255)
-}
-
-table( Customer ) {
-   primary_key(id): integer
-   column(first_Name ) : varchar(255)
-   column(last_Name ) : varchar(255)
-   column(mobile_Phone_Number) : varchar(255)
-   foreign_key(shipping_Address_Id) : integer <<FK>>
-   foreign_key(bill_Address_Id) : integer <<FK>>
-   foreign_key(user_Id) : integer <<FK>>
-   foreign_key(shoping_Cart_Id) : integer <<FK>>
-   
-}
-
-table(ShoppingCart) {
-   primary_key(id) : integer
-   column(totalCartPrice) : integer
-}
-
-
-table(Product ) {
-   primary_key(id) : integer
-   column(name ) : varchar(255)
-   column(price ) : integer
-   column(description) : varchar(255)
-   column(producer) : varchar(255)
-   column(category) : varchar(255) 
-  
-}
-
-table(SingleProductCart) {
-   primary_key(id) : integer
-   column(quantity) : integer
-   column(price) : integer
-   foreign_key(shopping_Cart_Id) : integer <<FK>>
-   foreign_key(product_Id) : integer <<FK>>
-}
+    table(ShoppingCart) {
+       primary_key(id) : integer
+       column(totalCartPrice) : integer
+    }
 
 
-table(Order ) {
-   primary_key(id) : integer
-   foreign_key(shopping_Cart_Id) : integer <<FK>>
-   foreign_key(customer_Id) : integer <<FK>>
-   foreign_key(shipping_Address_Id) : integer <<FK>>
-   foreign_key(billing_Adress_Id) : integer <<FK>>
-}
+    table(Product ) {
+       primary_key(id) : integer
+       column(name ) : varchar(255)
+       column(price ) : integer
+       column(description) : varchar(255)
+       column(producer) : varchar(255)
+       column(category) : varchar(255) 
+      
+    }
+
+    table(SingleProductCart) {
+       primary_key(id) : integer
+       column(quantity) : integer
+       column(price) : integer
+       foreign_key(shopping_Cart_Id) : integer <<FK>>
+       foreign_key(product_Id) : integer <<FK>>
+    }
+
+
+    table(Order ) {
+       primary_key(id) : integer
+       foreign_key(shopping_Cart_Id) : integer <<FK>>
+       foreign_key(customer_Id) : integer <<FK>>
+       foreign_key(shipping_Address_Id) : integer <<FK>>
+       foreign_key(billing_Adress_Id) : integer <<FK>>
+    }
 
 
 
-table(ShippingAddress) {
-   primary_key(id) : integer
-   column(address) : varchar(255)
-   column(city ): varchar(255)
-   column(zipcode ): varchar(255)
-   column(country ): varchar(255)
-} 
+    table(ShippingAddress) {
+       primary_key(id) : integer
+       column(address) : varchar(255)
+       column(city ): varchar(255)
+       column(zipcode ): varchar(255)
+       column(country ): varchar(255)
+    } 
 
 
-Customer }--{ShoppingCart
-Customer }--||ShippingAddress
-Customer ||--{Order
-ShoppingCart }--{SingleProductCart
-ShoppingCart ||--{Order
-ShippingAddress ||--{Order
-SingleProductCart ||--{Product
+    Customer }--{ShoppingCart
+    Customer }--||ShippingAddress
+    Customer ||--{Order
+    ShoppingCart }--{SingleProductCart
+    ShoppingCart ||--{Order
+    ShippingAddress ||--{Order
+    SingleProductCart ||--{Product
 
-@enduml
+    @enduml
 
 ## Endpoint-uri:  
 **Adresa: localhost:8080/demo**  
