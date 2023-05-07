@@ -48,86 +48,133 @@ De asemenea dupa cum se vede si in structura proiectul am modificat si baza de d
 
 Pentru finalul proiectul mai este nevoie de rezolvat o eroare si de finalizat implemetarea pentru a se putea realiza partea de order.
 
-Diagrama bazei de date: https://www.planttext.com/
-@startuml
-!define primary_key(x) <b><color:#b8861b><&key></color> x</b>
-!define foreign_key(x) <color:#aaaaaa><&key></color> x
-!define column(x) <color:#efefef><&media-record></color> x
-!define table(x) entity x << (T, white) >>
+### Pentru diagrame: https://www.planttext.com/
+### Diagrama bazei de date:
+    @startuml
+    !define primary_key(x) <b><color:#b8861b><&key></color> x</b>
+    !define foreign_key(x) <color:#aaaaaa><&key></color> x
+    !define column(x) <color:#efefef><&media-record></color> x
+    !define table(x) entity x << (T, white) >>
+    
+    table( Admin ) {
+       primary_key(id): integer
+       column(username) : varchar(255) 
+       column(password ) : varchar(255)
+    }
+    
+    table( Customer ) {
+       primary_key(id): integer
+       column(first_Name ) : varchar(255)
+       column(last_Name ) : varchar(255)
+       column(mobile_Phone_Number) : varchar(255)
+       foreign_key(shipping_Address_Id) : integer <<FK>>
+       foreign_key(bill_Address_Id) : integer <<FK>>
+       foreign_key(user_Id) : integer <<FK>>
+       foreign_key(shoping_Cart_Id) : integer <<FK>>
+       
+    }
 
-table( Admin ) {
-   primary_key(id): integer
-   column(username) : varchar(255) 
-   column(password ) : varchar(255)
-}
-
-table( Customer ) {
-   primary_key(id): integer
-   column(first_Name ) : varchar(255)
-   column(last_Name ) : varchar(255)
-   column(mobile_Phone_Number) : varchar(255)
-   foreign_key(shipping_Address_Id) : integer <<FK>>
-   foreign_key(bill_Address_Id) : integer <<FK>>
-   foreign_key(user_Id) : integer <<FK>>
-   foreign_key(shoping_Cart_Id) : integer <<FK>>
-   
-}
-
-table(ShoppingCart) {
-   primary_key(id) : integer
-   column(totalCartPrice) : integer
-}
-
-
-table(Product ) {
-   primary_key(id) : integer
-   column(name ) : varchar(255)
-   column(price ) : integer
-   column(description) : varchar(255)
-   column(producer) : varchar(255)
-   column(category) : varchar(255) 
-  
-}
-
-table(SingleProductCart) {
-   primary_key(id) : integer
-   column(quantity) : integer
-   column(price) : integer
-   foreign_key(shopping_Cart_Id) : integer <<FK>>
-   foreign_key(product_Id) : integer <<FK>>
-}
+    table(ShoppingCart) {
+       primary_key(id) : integer
+       column(totalCartPrice) : integer
+    }
 
 
-table(Order ) {
-   primary_key(id) : integer
-   foreign_key(shopping_Cart_Id) : integer <<FK>>
-   foreign_key(customer_Id) : integer <<FK>>
-   foreign_key(shipping_Address_Id) : integer <<FK>>
-   foreign_key(billing_Adress_Id) : integer <<FK>>
-}
+    table(Product ) {
+       primary_key(id) : integer
+       column(name ) : varchar(255)
+       column(price ) : integer
+       column(description) : varchar(255)
+       column(producer) : varchar(255)
+       column(category) : varchar(255) 
+      
+    }
+
+    table(SingleProductCart) {
+       primary_key(id) : integer
+       column(quantity) : integer
+       column(price) : integer
+       foreign_key(shopping_Cart_Id) : integer <<FK>>
+       foreign_key(product_Id) : integer <<FK>>
+    }
+
+
+    table(Order ) {
+       primary_key(id) : integer
+       foreign_key(shopping_Cart_Id) : integer <<FK>>
+       foreign_key(customer_Id) : integer <<FK>>
+       foreign_key(shipping_Address_Id) : integer <<FK>>
+       foreign_key(billing_Adress_Id) : integer <<FK>>
+    }
 
 
 
-table(ShippingAddress) {
-   primary_key(id) : integer
-   column(address) : varchar(255)
-   column(city ): varchar(255)
-   column(zipcode ): varchar(255)
-   column(country ): varchar(255)
-} 
+    table(ShippingAddress) {
+       primary_key(id) : integer
+       column(address) : varchar(255)
+       column(city ): varchar(255)
+       column(zipcode ): varchar(255)
+       column(country ): varchar(255)
+    } 
 
 
-Customer }--{ShoppingCart
-Customer }--||ShippingAddress
-Customer ||--{Order
-ShoppingCart }--{SingleProductCart
-ShoppingCart ||--{Order
-ShippingAddress ||--{Order
-SingleProductCart ||--{Product
+    Customer }--{ShoppingCart
+    Customer }--||ShippingAddress
+    Customer ||--{Order
+    ShoppingCart }--{SingleProductCart
+    ShoppingCart ||--{Order
+    ShippingAddress ||--{Order
+    SingleProductCart ||--{Product
 
-@enduml
+    @enduml
 
+## Endpoint-uri:  
+**Adresa: localhost:8080/demo**  
 
+### /admin:  
+    * GET /id -> returneaza un admin dupa id
+          /username -> returneaza un admin dupa nume
+          /all -> returneaza o lista cu toti adminii
+    * POST /add -> adauga un admin
+                -> body: {"username", "password"}
+    * PUT /update -> modifica un admin
+                -> body: {"id", "username", "password"}
+    *DELETE /delete -> sterge un admin
+                    -> param: $id
+           
+### /customer:
+    * GET /id -> returneaza un client dupa id
+          /email -> returneaza un client dupa nume
+          /firstNameAndLastName -> returneaza o lista cu toti adminii
+          /all -> returneaza o lista cu toti clientii
+    * POST /add -> adauga un client
+                -> body: {"firstName", "lastName", "customerPhone", "email", "password"}
+    * PUT /update -> modifica un client
+                -> body: {"id", "firstName", "lastName", "customerPhone", "email", "password"}
+    *DELETE /delete -> sterge un client
+                    -> param: $id
+    
+### /order:
+    * GET /id -> returneaza o comanda dupa id   
+          /all -> returneaza o lista cu toate comenzile
+    * POST /add -> adauga o comanda
+                -> body: {"time"}
+    * PUT /update -> modifica o comanda
+                -> body: {"id", "time" }
+    *DELETE /delete -> sterge o comanda
+                    -> param: $id
+
+### /product:
+    * GET /id -> returneaza un produs dupa id
+          /name-> returneaza un produs dupa nume
+          /category -> returneaza o produs dupa categorie
+          /all -> returneaza o lista cu toate produsle
+    * POST /add -> adauga un produs
+                -> body: {"name", "price"}
+    * PUT /update -> modifica un produs
+                -> body: {"id", "name", "price"}
+    *DELETE /delete -> sterge un produs
+                    -> param: $id
 
 
 [//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
