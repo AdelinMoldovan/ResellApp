@@ -49,6 +49,7 @@ De asemenea dupa cum se vede si in structura proiectul am modificat si baza de d
 Pentru finalul proiectul mai este nevoie de rezolvat o eroare si de finalizat implemetarea pentru a se putea realiza partea de order.
 
 Diagrama bazei de date: https://www.planttext.com/
+#
 @startuml
 !define primary_key(x) <b><color:#b8861b><&key></color> x</b>
 !define foreign_key(x) <color:#aaaaaa><&key></color> x
