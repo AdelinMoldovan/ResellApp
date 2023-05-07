@@ -5,5 +5,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public interface ShoppingCartService {
-    ShoppingCart getShoppingCartById(int shoppingCartId);
+
+    ShoppingCart findShoppingCartById(long shoppingCartId);
 }
