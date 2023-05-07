@@ -167,7 +167,7 @@ Pentru finalul proiectul mai este nevoie de rezolvat o eroare si de finalizat im
 ### /product:
     * GET /id -> returneaza un produs dupa id
           /name-> returneaza un produs dupa nume
-          /type -> returneaza o produs dupa tip
+          /category -> returneaza o produs dupa categorie
           /all -> returneaza o lista cu toate produsle
     * POST /add -> adauga un produs
                 -> body: {"name", "price"}
