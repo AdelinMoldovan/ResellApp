@@ -48,13 +48,13 @@ De asemenea dupa cum se vede si in structura proiectul am modificat si baza de d
 ## ✨  Finalizarea implmentarii + tema 3(testarea unitara)
 #
 #
-#### Obiectivul Testelor Unitare
+### Obiectivul Testelor Unitare
 Obiectivul testelor unitare este de ne asigura ca componentele individuale ale software-ului functioneaza conform specificatiilor si ca acestea pot fi utilizate in mod corespunzator de catre celelalte componente ale sistemului.
 
-#### Setarea mediului de testare
+### Setarea mediului de testare
 Pentru a efectua testele unitare, trebuie sa aveti un mediu de testare corespunzator. Acesta trebuie sa fie separat de mediul de productie si sa includa toate resursele necesare pentru testare. Acesta poate fi realizat prin creare unei baze de date separate sau prin utilizarea unor stub-uri sau mock-uri pentru componentele care comunica cu alte servicii.
 
-#### Planul de testare
+### Planul de testare
 Planul de testare trebuie să includa toate componente software care trebuie testate, precum și scenariile de testare pentru fiecare componenta. Fiecare scenariu de testare trebuie sa includa urmatoarele informatii:
 
 Scopul testului
@@ -62,18 +62,18 @@ Datele de intrare
 Rezultatele așteptate
 Condițiile de testare
 
-#### Structura testelor unitare
+### Structura testelor unitare
 Testele unitare trebuie să fie structurate astfel încat sa acopere toate cazurile posibile. Acest lucru poate fi realizat prin crearea de suite de teste care includ mai multe teste pentru fiecare functie sau clasa. Suitele de testare ar trebui sa fie organizate în functie de scopul lor si sa acopere toate cazurile posibile de utilizare.
 
-#### Implementare testelor unitare
+### Implementare testelor unitare
 
 Implementarea testelor unitare poate fi realizata utilizand un framework de testare, cum ar fi JUnit sau TestNG. Pentru fiecare componenta software, trebuie sa creati teste pentru fiecare scenariu de testare. In cadrul testelor, trebuie să validati intrarile si sa verificati rezultatele asteptate. De asemenea, ar trebui sa acoperiti cazurile limite si erorile de tratament.
 
-#### Analiza rezultatelor testelor
+### Analiza rezultatelor testelor
 
 După ce testele unitare sunt finalizate, ar trebui să analizati rezultatele pentru a determina daca componentele software sunt functionale si dacă indeplinesc specificatiile. Daca exista probleme sau erori, trebuie sa le remediati si sa efectuati teste suplimentare pentru a va asigura ca problema a fost rezolvata.
 
-#### Concluzie
+### Concluzie
 
 Testarea unitara este un proces important pentru a va asigura ca componentele software functioneaza asa cum trebuie si pot fi utilizate.
 
