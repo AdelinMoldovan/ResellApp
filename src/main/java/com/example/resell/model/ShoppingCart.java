@@ -3,16 +3,25 @@ package com.example.resell.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name="shoppingCart")
 public class ShoppingCart {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @OneToOne(mappedBy = "shoppingCart")
     @JsonIgnore
@@ -23,44 +32,18 @@ public class ShoppingCart {
 
     private double totalCartPrice;
 
-    public ShoppingCart() {
+    public void addItem(SingleCartItem item) {
+        if(this.singleProductCart == null) {
+            this.singleProductCart = new ArrayList<SingleCartItem>();
+        }
 
+        singleProductCart.add(item);
+        item.setShoppingCart(this);
+        totalCartPrice += item.getPrice();
     }
 
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
-    public List<SingleCartItem> getSingleProductCart() {
-        return singleProductCart;
-    }
-
-    public void setSingleProductCart(List<SingleCartItem> singleProductCart) {
-        this.singleProductCart = singleProductCart;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setTotalCartPrice(double totalCartPrice) {
-        this.totalCartPrice = totalCartPrice;
-    }
-
-    public double getTotalCartPrice() {
-        return totalCartPrice;
-    }
-
-    public ShoppingCart(int id, double totalCartPrice) {
-        this.id = id;
-        this.totalCartPrice = totalCartPrice;
+    public void removeItem(SingleCartItem item) {
+        singleProductCart.remove(item);
+        totalCartPrice -= item.getPrice();
     }
 }

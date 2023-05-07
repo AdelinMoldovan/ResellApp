@@ -14,15 +14,16 @@ import java.util.List;
 @Component
 public interface OrderService {
 
-    Order findById(int id) throws OrderNotFoundException;
+    Order findById(Long id) throws OrderNotFoundException;
     Order findByCustomerAndTime(Customer customer, LocalDateTime time) throws OrderNotFoundException;
-    List<Order> findAllByProducts(Product product);
     List<Order> findAllByTime(LocalDateTime time);
     List<Order> findAll();
 
     Order addOrder(Order order) throws InvalidOrderException;
     Order updateOrder(Order order) throws InvalidOrderException, OrderNotFoundException;
 
-    void deleteById(long id) throws OrderNotFoundException;
+    String generateInvoice(Order order);
+
+    void deleteById(Long id) throws OrderNotFoundException;
 
 }

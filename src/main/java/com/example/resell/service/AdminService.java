@@ -1,27 +1,24 @@
 package com.example.resell.service;
 
 
+import com.example.resell.exception.AdminNotFoundException;
 import com.example.resell.model.Admin;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-
 @Component
-public interface AdminService {
+public interface AdminService extends UserDetailsService {
 
-    Admin findById(long id); // throws AdminNotFoundException;
-    Admin findByEmail(String email); //throws AdminNotFoundException;
-    Admin findByFirstNameAndLastName(String firstName, String lastName); // throws AdminNotFoundException;
-    Admin findByEmailAndPassword(String email, String password); //throws AdminNotFoundException;
+    Admin findById(long id) throws AdminNotFoundException;
+
+    Admin findByUsername(String username) throws AdminNotFoundException;
 
     List<Admin> findAll();
 
-    Admin addAdmin(Admin admin); // throws InvalidAdminException;
-    Admin updateAdmin(Admin admin); // throws InvalidAdminException, AdminNotFoundException;
-    Admin updateProductsList(Admin admin); //throws AdminNotFoundException;
+    Admin addAdmin(Admin admin);
 
-    void deleteById(long adminId); // throws AdminNotFoundException;
+    Admin updateAdmin(Admin admin) throws AdminNotFoundException;
 
-
-
+    void deleteById(long adminId) throws AdminNotFoundException;
 }

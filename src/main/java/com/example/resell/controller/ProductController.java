@@ -1,18 +1,12 @@
 package com.example.resell.controller;
 
 
-import com.example.resell.model.Person;
 import com.example.resell.model.Product;
 import com.example.resell.service.ProductService;
-import jdk.jfr.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/product")
@@ -23,7 +17,7 @@ public class ProductController {
 
     @GetMapping("/findById")
     public ResponseEntity findProductById(@RequestParam long id) {
-        return ResponseEntity.status(HttpStatus.OK).body(productService.findById(id));
+        return ResponseEntity.status(HttpStatus.OK).body(productService.getById(id));
     }
 
     @GetMapping("/findByName")

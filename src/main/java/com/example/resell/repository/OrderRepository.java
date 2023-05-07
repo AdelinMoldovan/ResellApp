@@ -8,14 +8,9 @@ import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Long> {
-    Optional<Order> findById(long id);
-    Optional<Order> findByCustomerAndTime(Customer customer, LocalDateTime time);
-    List<Order> findAllByProducts(Product product);
+    List<Order> findByCustomerAndTime(Customer customer, LocalDateTime time);
     List<Order> findAllByTime(LocalDateTime time);
-
-    List<Order> findAll();
 }

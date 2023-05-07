@@ -1,7 +1,5 @@
 package com.example.resell.service;
 
-import com.example.resell.exception.InvalidPersonException;
-import com.example.resell.exception.InvalidProductException;
 import com.example.resell.exception.ProductNotFoundException;
 import com.example.resell.model.Product;
 import com.example.resell.observer.CustomerObserver;
@@ -29,7 +27,7 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
-    public Product findById(long id) throws ProductNotFoundException {
+    public Product getById(long id) throws ProductNotFoundException {
         Optional<Product> product = productRepository.findById(id);
         if (!product.isPresent()) {
             throw new ProductNotFoundException("Product with id " + id + " not found");
@@ -45,7 +43,7 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public List<Product> findAllByCategory(String category) {
-        return productRepository.findAllByProductCategory(category);
+        return productRepository.findAllByCategory(category);
     }
 
     @Override
@@ -85,8 +83,8 @@ public class ProductServiceImpl implements ProductService{
             if (product.getName() != null) {
                 productToUpdate.get().setName(product.getName());
             }
-            if (product.getProductPrice() != 0) {
-                productToUpdate.get().setProductPrice(product.getProductPrice());
+            if (product.getPrice() != 0) {
+                productToUpdate.get().setPrice(product.getPrice());
             }
             productRepository.save(productToUpdate.get());
         } else {

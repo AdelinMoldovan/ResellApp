@@ -16,25 +16,15 @@ public class AdminController {
     @Autowired
     private AdminService adminService;
 
-    @GetMapping("/findById")
-    public ResponseEntity findAdminById(@RequestParam long id){
+    @GetMapping("/{id}")
+    public ResponseEntity findAdminById(@PathVariable long id) {
         return ResponseEntity.status(HttpStatus.OK).body(adminService.findById(id));
-
     }
 
-    @GetMapping("/findByEmail")
-    public ResponseEntity findAdminByEmail(@RequestParam String email) {
-        return ResponseEntity.status(HttpStatus.OK).body(adminService.findByEmail(email));
-    }
 
-    @GetMapping("/findByFirstNameAndLastName")
-    public ResponseEntity findAdminByFirstNameAndLastName(@RequestParam String firstName, @RequestParam String lastName) {
-        return ResponseEntity.status(HttpStatus.OK).body(adminService.findByFirstNameAndLastName(firstName, lastName));
-    }
-
-    @GetMapping("/findByEmailAndPassword")
-    public ResponseEntity findAdminByEmailAndPassword(@RequestParam String email, @RequestParam String password) {
-        return ResponseEntity.status(HttpStatus.OK).body(adminService.findByEmailAndPassword(email, password));
+    @GetMapping("/username/{username}")
+    public ResponseEntity findAdminByUsername(@PathVariable String username) {
+        return ResponseEntity.status(HttpStatus.OK).body(adminService.findByUsername(username));
     }
 
     @GetMapping()
@@ -44,7 +34,7 @@ public class AdminController {
 
     @PostMapping("/add")
     public ResponseEntity addAdmin(@RequestBody Admin admin) {
-        return ResponseEntity.status(HttpStatus.OK).body(adminService.addAdmin(admin));
+        return ResponseEntity.status(HttpStatus.CREATED).body(adminService.addAdmin(admin));
     }
 
     @PutMapping("/update")
@@ -52,8 +42,9 @@ public class AdminController {
         return ResponseEntity.status(HttpStatus.OK).body(adminService.updateAdmin(admin));
     }
 
-    @DeleteMapping("/delete")
-    public void deleteAdmin(@RequestParam long id) {
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteAdmin(@PathVariable long id) {
         adminService.deleteById(id);
     }
 }
