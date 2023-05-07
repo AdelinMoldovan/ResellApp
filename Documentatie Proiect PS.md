@@ -48,8 +48,7 @@ De asemenea dupa cum se vede si in structura proiectul am modificat si baza de d
 
 Pentru finalul proiectul mai este nevoie de rezolvat o eroare si de finalizat implemetarea pentru a se putea realiza partea de order.
 
-Diagrama bazei de date: https://www.planttext.com/
-#
+### Diagrama bazei de date: https://www.planttext.com/
 @startuml
 !define primary_key(x) <b><color:#b8861b><&key></color> x</b>
 !define foreign_key(x) <color:#aaaaaa><&key></color> x
@@ -128,7 +127,53 @@ SingleProductCart ||--{Product
 
 @enduml
 
+## Endpoint-uri:  
+**Adresa: localhost:8080/demo**  
 
+### /admin:  
+    * GET /id -> returneaza un admin dupa id
+          /username -> returneaza un admin dupa nume
+          /all -> returneaza o lista cu toti adminii
+    * POST /add -> adauga un admin
+                -> body: {"username", "password"}
+    * PUT /update -> modifica un admin
+                -> body: {"id", "username", "password"}
+    *DELETE /delete -> sterge un admin
+                    -> param: $id
+           
+### /customer:
+    * GET /id -> returneaza un client dupa id
+          /email -> returneaza un client dupa nume
+          /firstNameAndLastName -> returneaza o lista cu toti adminii
+          /all -> returneaza o lista cu toti clientii
+    * POST /add -> adauga un client
+                -> body: {"firstName", "lastName", "customerPhone", "email", "password"}
+    * PUT /update -> modifica un client
+                -> body: {"id", "firstName", "lastName", "customerPhone", "email", "password"}
+    *DELETE /delete -> sterge un client
+                    -> param: $id
+    
+### /order:
+    * GET /id -> returneaza o comanda dupa id   
+          /all -> returneaza o lista cu toate comenzile
+    * POST /add -> adauga o comanda
+                -> body: {"time"}
+    * PUT /update -> modifica o comanda
+                -> body: {"id", "time" }
+    *DELETE /delete -> sterge o comanda
+                    -> param: $id
+
+### /product:
+    * GET /id -> returneaza un produs dupa id
+          /name-> returneaza un produs dupa nume
+          /type -> returneaza o produs dupa tip
+          /all -> returneaza o lista cu toate produsle
+    * POST /add -> adauga un produs
+                -> body: {"name", "price"}
+    * PUT /update -> modifica un produs
+                -> body: {"id", "name", "price"}
+    *DELETE /delete -> sterge un produs
+                    -> param: $id
 
 
 [//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
