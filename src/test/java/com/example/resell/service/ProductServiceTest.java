@@ -1,7 +1,6 @@
 package com.example.resell.service;
 
 
-import com.example.resell.exception.InvalidProductException;
 import com.example.resell.exception.ProductNotFoundException;
 import com.example.resell.model.Product;
 import com.example.resell.repository.ProductRepository;
@@ -13,7 +12,6 @@ import org.mockito.Mock;
 
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
@@ -47,7 +45,7 @@ public class ProductServiceTest {
         product.setId(1L);
         when(productRepository.findById(1L)).thenReturn(Optional.of(product));
 
-        Product foundProduct = productService.getById(product.getId());
+        Product foundProduct = productService.findById(product.getId());
 
         assertNotNull(foundProduct);
         assertEquals(1L, foundProduct.getId());
@@ -59,7 +57,7 @@ public class ProductServiceTest {
         when(productRepository.findById(400L)).thenReturn(Optional.empty());
 
         assertThrows(ProductNotFoundException.class, () -> {
-            productService.getById(product.getId());
+            productService.findById(product.getId());
         });
     }
 

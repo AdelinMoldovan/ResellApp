@@ -26,8 +26,14 @@ public class ProductServiceImpl implements ProductService{
         this.adminService = adminService;
     }
 
+    /**
+     * Method to find a product by id
+     * @param id
+     * @return product found
+     * @throws ProductNotFoundException
+     */
     @Override
-    public Product getById(long id) throws ProductNotFoundException {
+    public Product findById(long id) throws ProductNotFoundException {
         Optional<Product> product = productRepository.findById(id);
         if (!product.isPresent()) {
             throw new ProductNotFoundException("Product with id " + id + " not found");
@@ -35,22 +41,41 @@ public class ProductServiceImpl implements ProductService{
         return product.get();
     }
 
+    /**
+     * Method to find all products by name
+     * @param name
+     * @return list of products
+     */
     @Override
     public List<Product> findAllByName(String name) {
         return productRepository.findAllByName(name);
     }
 
 
+    /**
+     * Method to find all products by category
+     * @param category
+     * @return list of products
+     */
     @Override
     public List<Product> findAllByCategory(String category) {
         return productRepository.findAllByCategory(category);
     }
 
+    /**
+     * Method to find all products from DB
+     * @return lust of products
+     */
     @Override
     public List<Product> findAll() {
         return productRepository.findAll();
     }
 
+    /**
+     * Method to add and save a product in the DB
+     * @param product
+     * @return saved product
+     */
     @Override
     public Product addProduct(Product product) {
         // Add the product to the database
@@ -62,20 +87,37 @@ public class ProductServiceImpl implements ProductService{
         return product;
     }
 
+    /**
+     * Method to rigister an observer
+     * @param observer
+     */
     public void registerObserver(CustomerObserver observer) {
         observers.add(observer);
     }
-
+    /**
+     * Method to unrigister an observer
+     * @param observer
+     */
     public void unregisterObserver(CustomerObserver observer) {
         observers.remove(observer);
     }
 
+    /**
+     * Method to notify observers, created for Observable Design Pattern
+     * @param product
+     */
     public void notifyObservers(Product product) {
         for (CustomerObserver observer : observers) {
             observer.update(product);
         }
     }
 
+    /**
+     * Method to update an existing product from DB
+     * @param product
+     * @return updated product
+     * @throws ProductNotFoundException
+     */
     @Override
     public Product updateProduct(Product product) throws ProductNotFoundException{
         Optional<Product> productToUpdate = productRepository.findById(product.getId());
@@ -93,6 +135,10 @@ public class ProductServiceImpl implements ProductService{
         return productToUpdate.get();
     }
 
+    /**
+     * Method to delete a product from DB
+     * @param id
+     */
     @Override
     public void deleteById(long id) {
         Optional<Product> productToDelete = productRepository.findById(id);

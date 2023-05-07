@@ -29,6 +29,12 @@ public class OrderServiceImpl implements OrderService {
         this.productService = productService;
     }
 
+    /**
+     * Method to find an order by id
+     * @param id
+     * @return found order
+     * @throws OrderNotFoundException
+     */
     @Override
     public Order findById(Long id) throws OrderNotFoundException {
         Optional<Order> order = orderRepository.findById(id);
@@ -38,6 +44,13 @@ public class OrderServiceImpl implements OrderService {
         return order.get();
     }
 
+    /**
+     * Method to find an order by customer and by time
+     * @param customer
+     * @param time
+     * @return found order
+     * @throws OrderNotFoundException
+     */
     @Override
     public Order findByCustomerAndTime(Customer customer, LocalDateTime time) throws OrderNotFoundException {
         List<Order> order = orderRepository.findByCustomerAndTime(customer, time);
@@ -47,21 +60,41 @@ public class OrderServiceImpl implements OrderService {
         return order.get(0);
     }
 
+    /**
+     * Method to find all orders by a specific time
+     * @param time
+     * @return list of orders
+     */
     @Override
     public List<Order> findAllByTime(LocalDateTime time) {
         return orderRepository.findAllByTime(time);
     }
 
+    /**
+     * Method to find all orders from DB
+     * @return list containing all orders from DB
+     */
     @Override
     public List<Order> findAll() {
         return orderRepository.findAll();
     }
 
+    /**
+     * Method to add and save a new order in the DB
+     * @param order
+     * @return saved order
+     * @throws InvalidOrderException
+     */
     @Override
     public Order addOrder(Order order) throws InvalidOrderException {
         return orderRepository.save(order);
     }
 
+    /**
+     * Method to generare or order invoice and print the order details
+     * @param order
+     * @return printed order
+     */
     @Override
     public String generateInvoice(Order order) {
         StringBuilder invoice = new StringBuilder();
@@ -100,6 +133,13 @@ public class OrderServiceImpl implements OrderService {
     }
 
 
+    /**
+     * Method to update an existing order from DB
+     * @param order
+     * @return updated order
+     * @throws InvalidOrderException
+     * @throws OrderNotFoundException
+     */
     @Override
     public Order updateOrder(Order order) throws InvalidOrderException, OrderNotFoundException{
         Optional<Order> orderToUpdate = orderRepository.findById(order.getId());
@@ -114,6 +154,10 @@ public class OrderServiceImpl implements OrderService {
         return orderToUpdate.get();
     }
 
+    /**
+     * Method to delete an order from DB
+     * @param id
+     */
     @Override
     public void deleteById(Long id) {
         Optional<Order> orderToDelete = orderRepository.findById(id);

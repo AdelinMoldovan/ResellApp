@@ -12,7 +12,7 @@ import java.util.List;
 @Component
 public interface ProductService {
 
-    Product getById(long id) throws ProductNotFoundException;
+    Product findById(long id) throws ProductNotFoundException;
 
     List<Product> findAllByName(String name) throws ProductNotFoundException;
     List<Product> findAllByCategory(String category) throws ProductNotFoundException;

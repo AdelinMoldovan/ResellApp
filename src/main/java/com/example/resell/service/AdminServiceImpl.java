@@ -27,7 +27,12 @@ public class AdminServiceImpl implements UserDetailsService, AdminService {
         this.adminRepository = adminRepository;
     }
 
-
+    /**
+     * Method to load User by username used for web page
+     * @param username
+     * @return
+     * @throws UsernameNotFoundException
+     */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Admin admin = null;
@@ -39,6 +44,12 @@ public class AdminServiceImpl implements UserDetailsService, AdminService {
         return (UserDetails) admin;
     }
 
+    /**
+     * Method to find an admin by id
+     * @param id
+     * @return admin found
+     * @throws AdminNotFoundException
+     */
     @Override
     public Admin findById(long id) throws AdminNotFoundException {
         Optional<Admin> admin = adminRepository.findById(id);
@@ -48,6 +59,12 @@ public class AdminServiceImpl implements UserDetailsService, AdminService {
         return admin.get();
     }
 
+    /**
+     * Method to find an admin by username
+     * @param username
+     * @return admin found
+     * @throws AdminNotFoundException
+     */
     @Override
     public Admin findByUsername(String username) throws AdminNotFoundException {
         Optional<Admin> admin = adminRepository.findByUsername(username);
@@ -57,11 +74,20 @@ public class AdminServiceImpl implements UserDetailsService, AdminService {
         return admin.get();
     }
 
+    /**
+     * Method to find all admins from DB
+     * @return a list containing all admins from DB
+     */
     @Override
     public List<Admin> findAll() {
         return adminRepository.findAll();
     }
 
+    /**
+     * Method to add and save an admin in the DB
+     * @param admin
+     * @return saved admin
+     */
     @Override
     public Admin addAdmin(Admin admin) {
         Optional<Admin> foundAdmin = adminRepository.findByUsername(admin.getUsername());
@@ -74,6 +100,12 @@ public class AdminServiceImpl implements UserDetailsService, AdminService {
         return admin;
     }
 
+    /**
+     * Method to update an existing admin from DB
+     * @param admin
+     * @return updated admin
+     * @throws AdminNotFoundException
+     */
     @Override
     public Admin updateAdmin(Admin admin) throws AdminNotFoundException {
         Optional<Admin> adminToUpdate = adminRepository.findById(admin.getId());
@@ -87,6 +119,11 @@ public class AdminServiceImpl implements UserDetailsService, AdminService {
         return adminToUpdate.get();
     }
 
+    /**
+     * Method to delete an admin from DB
+     * @param adminId
+     * @throws AdminNotFoundException
+     */
     @Override
     public void deleteById(long adminId) throws AdminNotFoundException {
         Optional<Admin> adminToDelete = adminRepository.findById(adminId);

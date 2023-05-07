@@ -10,39 +10,67 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/admin")
+@RequestMapping("/demo")
 public class AdminController {
 
     @Autowired
     private AdminService adminService;
 
-    @GetMapping("/{id}")
+    /**
+     * Returns an admin by id.
+     * @param id
+     * @return DataResponse(status, message, admin).
+     */
+    @GetMapping("/admin/id")
     public ResponseEntity findAdminById(@PathVariable long id) {
         return ResponseEntity.status(HttpStatus.OK).body(adminService.findById(id));
     }
 
-
-    @GetMapping("/username/{username}")
+    /**
+     * Returns an admin by username.
+     * @param username
+     * @return DataResponse(status, message, admin).
+     */
+    @GetMapping("/admin/username")
     public ResponseEntity findAdminByUsername(@PathVariable String username) {
         return ResponseEntity.status(HttpStatus.OK).body(adminService.findByUsername(username));
     }
 
-    @GetMapping()
+    /**
+     * Returns a list of all admins from DB.
+     * @return DataResponse(status, message, list of admins).
+     */
+    @GetMapping("/admin/all")
     public ResponseEntity findAllAdmins() {
         return ResponseEntity.status(HttpStatus.OK).body(adminService.findAll());
     }
 
-    @PostMapping("/add")
+    /**
+     * Creates an admin and saves it in the DB.
+     * @param admin
+     * @return DataResponse (status, message).
+     */
+    @PostMapping("/admin/add")
     public ResponseEntity addAdmin(@RequestBody Admin admin) {
         return ResponseEntity.status(HttpStatus.CREATED).body(adminService.addAdmin(admin));
     }
 
-    @PutMapping("/update")
+    /**
+     * Updates an existing admin from DB.
+     * @param admin
+     * @return DataResponse (status, message).
+     */
+    @PutMapping("/admin/update")
     public ResponseEntity updateAdmin(@RequestBody Admin admin) {
         return ResponseEntity.status(HttpStatus.OK).body(adminService.updateAdmin(admin));
     }
 
-    @DeleteMapping("/{id}")
+    /**
+     *  Deletes an admin from DB.
+     * @param id
+     * @return DataResponse (status, message).
+     */
+    @DeleteMapping("/admin/delete")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteAdmin(@PathVariable long id) {
         adminService.deleteById(id);

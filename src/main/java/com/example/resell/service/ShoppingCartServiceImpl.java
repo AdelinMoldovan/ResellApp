@@ -15,6 +15,12 @@ public class ShoppingCartServiceImpl implements ShoppingCartService{
     @Autowired
     private ShoppingCartRepository shoppingCartRepository;
 
+    /**
+     * Method to find shooping cart by id
+     * @param shoppingCartId
+     * @return shopping cart found
+     * @throws ShoppingCartNotFoundException
+     */
     @Override
     public ShoppingCart findShoppingCartById(long shoppingCartId) throws ShoppingCartNotFoundException{
         Optional<ShoppingCart> shoppingCart = shoppingCartRepository.findById(shoppingCartId);

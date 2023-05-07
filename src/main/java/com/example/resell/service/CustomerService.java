@@ -19,8 +19,6 @@ public interface CustomerService {
 
     Customer addCustomer(Customer customer) throws  InvalidCustomerException;
 
-    Customer updateOrderList(Customer customer) throws CustomerNotFoundException;
-
     Customer updateCustomer(Customer customer) throws CustomerNotFoundException, InvalidCustomerException;
 
     void deleteById(long id) throws CustomerNotFoundException;

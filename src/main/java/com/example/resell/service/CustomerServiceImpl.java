@@ -1,7 +1,6 @@
 package com.example.resell.service;
 
 
-import com.example.resell.exception.AdminNotFoundException;
 import com.example.resell.exception.CustomerNotFoundException;
 import com.example.resell.exception.InvalidCustomerException;
 import com.example.resell.exception.WrongDetailsException;
@@ -28,6 +27,12 @@ public class CustomerServiceImpl implements CustomerService {
         this.customerDetailsValidator = customerDetailsValidator;
     }
 
+    /**
+     * Method to find a customer by id
+     * @param id
+     * @return customer found
+     * @throws CustomerNotFoundException
+     */
     @Override
     public Customer findById(long id) throws CustomerNotFoundException {
         Optional<Customer> customer = customerRepository.findById(id);
@@ -38,6 +43,12 @@ public class CustomerServiceImpl implements CustomerService {
         return customer.get();
     }
 
+    /**
+     * Method to find a customer by email
+     * @param email
+     * @return customer found
+     * @throws CustomerNotFoundException
+     */
     @Override
     public Customer findByEmail(String email) throws CustomerNotFoundException {
         Optional<Customer> customer = customerRepository.findByEmail(email);
@@ -48,6 +59,13 @@ public class CustomerServiceImpl implements CustomerService {
         return customer.get();
     }
 
+    /**
+     * Method to find a customer by first name and last name
+     * @param firstName
+     * @param lastName
+     * @return customer found
+     * @throws CustomerNotFoundException
+     */
     @Override
     public Customer findByFirstNameAndLastName(String firstName, String lastName) throws CustomerNotFoundException {
         Optional<Customer> customer = customerRepository.findByFirstNameAndLastName(firstName, lastName);
@@ -58,11 +76,21 @@ public class CustomerServiceImpl implements CustomerService {
         return customer.get();
     }
 
+    /**
+     * Method to find all customers from DB
+     * @return a list containg all customers from DB
+     */
     @Override
     public List<Customer> findAll() {
         return customerRepository.findAll();
     }
 
+    /**
+     * Method to add and save a customer in the DB
+     * @param customer
+     * @return saved customer
+     * @throws InvalidCustomerException
+     */
     @Override
     public Customer addCustomer(Customer customer) throws InvalidCustomerException {
         try {
@@ -73,7 +101,13 @@ public class CustomerServiceImpl implements CustomerService {
         return customerRepository.save(customer);
     }
 
-
+    /**
+     * Method to update an existing customer from DB
+     * @param customer
+     * @return updated customer
+     * @throws CustomerNotFoundException
+     * @throws InvalidCustomerException
+     */
     @Override
     public Customer updateCustomer(Customer customer) throws CustomerNotFoundException, InvalidCustomerException {
         Optional<Customer> customerToUpdate = customerRepository.findById(customer.getId());
@@ -97,16 +131,11 @@ public class CustomerServiceImpl implements CustomerService {
         return customerToUpdate.get();
     }
 
-
-    @Override
-    public Customer updateOrderList(Customer customer) throws CustomerNotFoundException {
-        if (customerRepository.findById(customer.getId()).isEmpty()) {
-            throw new CustomerNotFoundException("Customer with id " + customer.getId() + " not found");
-        }
-        customerRepository.save(customer);
-        return customer;
-    }
-
+    /**
+     * Method to delete a customer from DB
+     * @param id
+     * @throws CustomerNotFoundException
+     */
     @Override
     public void deleteById(long id) throws CustomerNotFoundException {
         Optional<Customer> doctorToDelete = customerRepository.findById(id);

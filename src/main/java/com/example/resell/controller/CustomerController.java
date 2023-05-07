@@ -8,45 +8,78 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/customer")
+@RequestMapping("/demo")
 public class CustomerController {
 
     @Autowired
     private CustomerService customerService;
 
-    @GetMapping("/findById")
+    /**
+     * Returns a customer by id.
+     * @param id
+     * @return DataResponse(status, message, customer).
+     */
+    @GetMapping("/customer/id")
     public ResponseEntity findCustomerById(@RequestParam long id) {
         return ResponseEntity.status(HttpStatus.OK).body(customerService.findById(id));
     }
 
-    @GetMapping("/findByEmail")
+    /**
+     * Returns a customer by email.
+     * @param email
+     * @return DataResponse(status, message, customer).
+     */
+    @GetMapping("/customer/email")
     public ResponseEntity findCustomerByEmail(@RequestParam String email) {
         return ResponseEntity.status(HttpStatus.OK).body(customerService.findByEmail(email));
     }
 
-
-    @GetMapping("/findByFirstNameAndLastName")
+    /**
+     * Returns a customer by first name and last name.
+     * @param firstName
+     * @param lastName
+     * @return DataResponse(status, message, customer).
+     */
+    @GetMapping("/customer/firstNameAndLastName")
     public ResponseEntity findCustomerByFirstNameAndLastName(@RequestParam String firstName, @RequestParam String lastName) {
         return ResponseEntity.status(HttpStatus.OK).body(customerService.findByFirstNameAndLastName(firstName, lastName));
     }
 
-
-    @GetMapping()
+    /**
+     * Returns a list of all customers from DB.
+     * @return DataResponse(status, message, list of customers).
+     */
+    @GetMapping("/customer/all")
     public ResponseEntity findAllCustomers() {
         return ResponseEntity.status(HttpStatus.OK).body(customerService.findAll());
     }
 
-    @PostMapping("/add")
+    /**
+     * Creates a customer and saves it in the DB.
+     * @param customer
+     * @return DataResponse (status, message).
+     */
+    @PostMapping("/customer/add")
     public ResponseEntity addCustomer(@RequestBody Customer customer) {
         return ResponseEntity.status(HttpStatus.OK).body(customerService.addCustomer(customer));
     }
 
-    @PutMapping("/update")
+    /**
+     * Updates an existing customer from DB.
+     * @param customer
+     * @return DataResponse (status, message).
+     */
+    @PutMapping("/customer/update")
     public ResponseEntity updateCustomer(@RequestBody Customer customer) {
         return ResponseEntity.status(HttpStatus.OK).body(customerService.updateCustomer(customer));
     }
 
-    @DeleteMapping("/delete")
+    /**
+     *  Deletes a customer from DB.
+     * @param id
+     * @return DataResponse (status, message).
+     */
+    @DeleteMapping("/customer/delete")
     public void deleteCustomer(@RequestParam long id) {
         customerService.deleteById(id);
     }
