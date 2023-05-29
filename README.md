@@ -48,13 +48,13 @@ De asemenea dupa cum se vede si in structura proiectul am modificat si baza de d
 ## ✨  Finalizarea implmentarii + tema 3(testarea unitara)
 #
 #
-### Obiectivul Testelor Unitare
+#### Obiectivul Testelor Unitare
 Obiectivul testelor unitare este de ne asigura ca componentele individuale ale software-ului functioneaza conform specificatiilor si ca acestea pot fi utilizate in mod corespunzator de catre celelalte componente ale sistemului.
 
-### Setarea mediului de testare
+#### Setarea mediului de testare
 Pentru a efectua testele unitare, trebuie sa aveti un mediu de testare corespunzator. Acesta trebuie sa fie separat de mediul de productie si sa includa toate resursele necesare pentru testare. Acesta poate fi realizat prin creare unei baze de date separate sau prin utilizarea unor stub-uri sau mock-uri pentru componentele care comunica cu alte servicii.
 
-### Planul de testare
+#### Planul de testare
 Planul de testare trebuie să includa toate componente software care trebuie testate, precum și scenariile de testare pentru fiecare componenta. Fiecare scenariu de testare trebuie sa includa urmatoarele informatii:
 
 Scopul testului
@@ -62,18 +62,18 @@ Datele de intrare
 Rezultatele așteptate
 Condițiile de testare
 
-### Structura testelor unitare
+#### Structura testelor unitare
 Testele unitare trebuie să fie structurate astfel încat sa acopere toate cazurile posibile. Acest lucru poate fi realizat prin crearea de suite de teste care includ mai multe teste pentru fiecare functie sau clasa. Suitele de testare ar trebui sa fie organizate în functie de scopul lor si sa acopere toate cazurile posibile de utilizare.
 
-### Implementare testelor unitare
+#### Implementare testelor unitare
 
 Implementarea testelor unitare poate fi realizata utilizand un framework de testare, cum ar fi JUnit sau TestNG. Pentru fiecare componenta software, trebuie sa creati teste pentru fiecare scenariu de testare. In cadrul testelor, trebuie să validati intrarile si sa verificati rezultatele asteptate. De asemenea, ar trebui sa acoperiti cazurile limite si erorile de tratament.
 
-### Analiza rezultatelor testelor
+#### Analiza rezultatelor testelor
 
 După ce testele unitare sunt finalizate, ar trebui să analizati rezultatele pentru a determina daca componentele software sunt functionale si dacă indeplinesc specificatiile. Daca exista probleme sau erori, trebuie sa le remediati si sa efectuati teste suplimentare pentru a va asigura ca problema a fost rezolvata.
 
-### Concluzie
+#### Concluzie
 
 Testarea unitara este un proces important pentru a va asigura ca componentele software functioneaza asa cum trebuie si pot fi utilizate.
 
@@ -207,6 +207,37 @@ Testarea unitara este un proces important pentru a va asigura ca componentele so
                     -> param: $id
 
 
+## ✨   Partea de frontend   - tema4 
+
+Pentru partea de frontend am vrut sa invat o tehnologie noua si anume react. Astfel am instalat Node.js si NPM(Node Package Manager). Pe urma am creat un director pentru proiect in care am rulat comanda "npm install" pentru a instala package-urile necesare si pe urma le-am instalat manual in functie de ce mai aveam nevoie pe parcursul implementarii.
+#### Structura de baza: 
+Directorul src conține fișierele principale ale aplicatiei tale.
+În src, vei gasi index.js, care reprezintă punctul de intrare al aplicatiei, si App.js, care este componenta principală a aplicatiei.
+Creează un director components în src pentru a stoca componente reutilizabile și structura de navigare.
+Alte directoare relevante pot fi create pentru imagini, stiluri sau date de test, în funcție de nevoile tale.
+
+#### Componente: 
+În React, UI-ul este alcătuit din componente reutilizabile.
+Creează componente separate pentru diverse elemente de interfata, cum ar fi antetul, bara laterala, lista de produse, cardurile produselor etc.
+Componentele pot fi definite sub forma claselor sau a functiilor. Asigură-te că utilizezi componentele functionale în cât mai multe cazuri posibile, deoarece acestea sunt mai usor de citit si de testat.
+
+#### Comunicare cu API-ul: 
+Pentru a afisa produsele din magazin, vei avea nevoie de o interactiune cu un API (Application Programming Interface).
+Folosește metodele fetch sau biblioteci precum Axios pentru a face cereri HTTP către API si a obtine datele necesare pentru afisarea produselor.
+Poti utiliza metoda componentDidMount (în cazul claselor) sau useEffect (în cazul componentelor functionale) pentru a face aceste cereri în momentul încarcarii componentei.
+
+#### Rutare: 
+Daca ai nevoie de mai multe rute în aplicatia ta (de exemplu, pagina de detalii a produsului, cos de cumparaturi, pagina de plata etc.), poti utiliza o biblioteca de rutare precum React Router.
+
+## Concluzii finale:  
+#### 1.Complexitatea proiectului:
+Dezvoltarea unui sistem e-commerce este o sarcină complexa, deoarece implica gestionarea si procesarea datelor despre produse, comenzi, utilizatori, plati etc. Aceasta necesita o planificare atenta si o intelegere solida a arhitecturii de bază a aplicatiei.
+#### 2.Frontend:
+Partea de frontend a unui magazin online trebuie să ofere o experiență de utilizare plăcută și intuitivă. Interfața utilizatorului trebuie să fie atrăgătoare și ușor de navigat. Componentele React pot fi folosite pentru a construi o interfață modulară și reutilizabilă. Stilizarea și responsivitatea sunt, de asemenea, aspecte importante pentru a asigura o experiență coerentă pe diferite dispozitive.
+#### 3.Backend:
+Partea de backend a unui sistem e-commerce se ocupă de gestionarea datelor si logicii de afaceri. Este important să se asigure o securitate adecvata pentru datele utilizatorilor, precum si sa se implementeze funcționalitati cheie, cum ar fi procesarea plăților, gestionarea coșului de cumpărături, generarea de facturi etc. Ca si limbaj de programare am folosit Java, Node.js pentru ca pot fi utilizate pentru a dezvolta API-uri și pentru a interactiona cu baza de date.
+#### 4.Baza de date:
+Un magazin online necesita stocarea si gestionarea eficienta a datelor despre produse, utilizatori, comenzi și altele. Eu am folosit ca si baza de date MySQL, deoarece poate fi utilizata pentru a gestiona aceste date. Utilizarea unui ORM (Object-Relational Mapping) sau a unui ODM (Object-Document Mapping) facilitează interacțiunea cu baza de date si simplifică operatiile de citire și scriere.
 [//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
 
    [dill]: <https://github.com/joemccann/dillinger>
