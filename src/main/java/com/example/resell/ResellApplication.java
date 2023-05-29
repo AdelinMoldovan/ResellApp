@@ -74,7 +74,7 @@ public class ResellApplication {
                 addr.setAddress("Baritiu 69");
                 addr.setCity("Cluj");
                 addr.setZipcode("12345");
-                addr.setCountry("Ungaria");
+                addr.setCountry("Romania");
 
                 Order order1 = new Order();
                 order1.setShoppingCart(cart);
