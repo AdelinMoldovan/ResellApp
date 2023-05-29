@@ -2,7 +2,6 @@ package com.example.resell;
 
 
 import com.example.resell.model.*;
-import com.example.resell.repository.CustomerRepository;
 import com.example.resell.service.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -10,8 +9,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
@@ -26,20 +23,10 @@ public class ResellApplication {
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder() {
-            return new BCryptPasswordEncoder();
-    }
-    @Bean
-    CommandLineRunner init(AdminService adminService,
-                           CustomerService customerService,
+    CommandLineRunner init(CustomerService customerService,
                            OrderService orderService,
                            ProductService productService) {
         return args -> {
-                Admin admin = new Admin();
-                admin.setUsername("admin");
-                admin.setPassword("admin");
-                adminService.addAdmin(admin);
-
                 Product product1 = new Product();
                 product1.setName("Nike AirForce 1");
                 product1.setCategory("Sneakers");
@@ -58,6 +45,15 @@ public class ResellApplication {
                 product2.setStock("4");
                 productService.addProduct(product2);
 
+                Product product3 = new Product();
+                product3.setName("Nike Jordan 1 University Green");
+                product3.setCategory("Sneakers");
+                product3.setDescription("Culoare albastru, marimea 42");
+                product3.setManufacturer("Nike");
+                product3.setPrice(2000);
+                product3.setStock("4");
+                productService.addProduct(product3);
+
                 Customer customer = new Customer();
                 customer.setFirstName("Andrei");
                 customer.setLastName("Bugnar");
@@ -71,25 +67,14 @@ public class ResellApplication {
                 updateProduct.setName("Nike Jordan 1 Royal");
                 productService.updateProduct(updateProduct);
 
-                SingleCartItem item1 = new SingleCartItem();
-                item1.setProduct(product1);
-                item1.setQuantity(1);
-
-                SingleCartItem item2 = new SingleCartItem();
-                item2.setProduct(product2);
-                item2.setQuantity(2);
-
                 ShoppingCart cart = new ShoppingCart();
-                cart.setCustomer(customer);
-                cart.addItem(item1);
-                cart.addItem(item2);
+                cart.addItem(product1);
 
                 ShippingAddress addr = new ShippingAddress();
                 addr.setAddress("Baritiu 69");
                 addr.setCity("Cluj");
                 addr.setZipcode("12345");
                 addr.setCountry("Ungaria");
-                addr.setCustomer(customer);
 
                 Order order1 = new Order();
                 order1.setShoppingCart(cart);

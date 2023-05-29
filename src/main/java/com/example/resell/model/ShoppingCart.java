@@ -22,27 +22,21 @@ public class ShoppingCart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @OneToOne(mappedBy = "shoppingCart")
-    @JsonIgnore
-    private Customer customer;
-
-    @OneToMany(mappedBy = "shoppingCart", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<SingleCartItem> singleProductCart;
+    @Column(length = 3000)
+    private List<Product> singleProductCart;
 
     private double totalCartPrice;
 
-    public void addItem(SingleCartItem item) {
+    public void addItem(Product item) {
         if(this.singleProductCart == null) {
-            this.singleProductCart = new ArrayList<SingleCartItem>();
+            this.singleProductCart = new ArrayList<Product>();
         }
 
         singleProductCart.add(item);
-        item.setShoppingCart(this);
         totalCartPrice += item.getPrice();
     }
 
-    public void removeItem(SingleCartItem item) {
+    public void removeItem(Product item) {
         singleProductCart.remove(item);
         totalCartPrice -= item.getPrice();
     }

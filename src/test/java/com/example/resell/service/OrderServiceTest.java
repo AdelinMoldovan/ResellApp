@@ -174,13 +174,13 @@ public class OrderServiceTest {
         product1.setStock("5");
 
 
-        SingleCartItem item1 = new SingleCartItem();
+       /* SingleCartItem item1 = new SingleCartItem();
         item1.setProduct(product1);
         item1.setQuantity(1);
 
         ShoppingCart cart = new ShoppingCart();
         cart.setCustomer(customer);
-        cart.addItem(item1);
+        cart.addItem(item1);*/
 
         ShippingAddress addr = new ShippingAddress();
         addr.setAddress("Baritiu 69");
@@ -242,7 +242,7 @@ public class OrderServiceTest {
         product1.setPrice(650);
         product1.setStock("5");
 
-
+        /*
         SingleCartItem item1 = new SingleCartItem();
         item1.setProduct(product1);
         item1.setQuantity(1);
@@ -250,7 +250,7 @@ public class OrderServiceTest {
         ShoppingCart cart = new ShoppingCart();
         cart.setCustomer(customer);
         cart.addItem(item1);
-
+        */
         ShippingAddress addr = new ShippingAddress();
         addr.setAddress("Baritiu 69");
         addr.setCity("Cluj");

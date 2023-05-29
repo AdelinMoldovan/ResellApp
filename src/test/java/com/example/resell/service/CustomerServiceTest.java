@@ -1,11 +1,10 @@
 package com.example.resell.service;
 
 
-import com.example.resell.exception.AdminNotFoundException;
 import com.example.resell.exception.CustomerNotFoundException;
 import com.example.resell.exception.InvalidCustomerException;
 import com.example.resell.exception.WrongDetailsException;
-import com.example.resell.model.Admin;
+
 import com.example.resell.model.Customer;
 import com.example.resell.repository.CustomerRepository;
 import com.example.resell.validator.CustomerDetailsValidator;

@@ -28,7 +28,7 @@ public class ProductServiceTest {
     private ProductRepository productRepository;
 
     @Mock
-    private AdminService adminService;
+    //private AdminService adminService;
     private ProductServiceImpl productService;
     private Product product;
 
@@ -36,7 +36,7 @@ public class ProductServiceTest {
     @Before
     public void setUp() {
         initMocks(this);
-        productService = new ProductServiceImpl(productRepository, adminService);
+        productService = new ProductServiceImpl(productRepository);
         product = new Product();
     }
 

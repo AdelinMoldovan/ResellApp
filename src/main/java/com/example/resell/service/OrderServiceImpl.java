@@ -119,9 +119,8 @@ public class OrderServiceImpl implements OrderService {
         invoice.append("-------------\n");
         ShoppingCart shoppingCart = order.getShoppingCart();
         double total = 0;
-        for (SingleCartItem item : shoppingCart.getSingleProductCart()) {
-            invoice.append("Product: ").append(item.getProduct().getName()).append("\n");
-            invoice.append("Quantity: ").append(item.getQuantity()).append("\n");
+        for (Product item : shoppingCart.getSingleProductCart()) {
+            invoice.append("Product: ").append(item.getName()).append("\n");
             invoice.append("Price: ").append(item.getPrice()).append("\n");
             invoice.append("--------------------\n");
             total += item.getPrice();

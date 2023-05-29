@@ -28,8 +28,4 @@ public class ShippingAddress implements Serializable {
     private String zipcode;
 
     private String country;
-
-    @OneToOne(mappedBy = "shippingAddress")
-    private Customer customer;
-
 }

@@ -17,13 +17,10 @@ public class ProductServiceImpl implements ProductService{
     @Autowired
     private ProductRepository productRepository;
 
-    @Autowired
-    private AdminService adminService;
     private List<CustomerObserver> observers = new ArrayList<>();
 
-    public ProductServiceImpl(ProductRepository productRepository, AdminService adminService) {
+    public ProductServiceImpl(ProductRepository productRepository) {
         this.productRepository = productRepository;
-        this.adminService = adminService;
     }
 
     /**
